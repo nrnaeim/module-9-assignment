@@ -1,0 +1,28 @@
+.myNavbar {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  .logo {
+    a {
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      gap: 10px;
+      color: black;
+    }
+    display: flex;
+  }
+  .menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+    list-style: none;
+    font-size: 20px;
+  }
+}
