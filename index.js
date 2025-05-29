@@ -41,7 +41,7 @@ async function fetcProduct() {
   </div>
 </div>`;
 
-  const fetecUrl = "https://dummyjson.com/products";
+  const fetecUrl = "https://dummyjson.co/products";
   try {
     const response = await fetch(fetecUrl);
     if (response.status === 200) {
@@ -111,6 +111,6 @@ async function seeAllProduct(event) {
 //error handler
 function errorhandler() {
   document.querySelector("#products .content").innerHTML = `
-   <p>Opps! 01 Server error</p>
+   <p>Opps! 501 Server error</p>
   `;
 }
