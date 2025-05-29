@@ -33,3 +33,46 @@ menu.forEach((btn) => {
     event.target.classList.add("activeMenu");
   });
 });
+
+//product fetching handler
+window.addEventListener("load", async () => {
+  const fetecUrl = "https://dummyjson.com/products";
+  try {
+    const response = await fetch(fetecUrl);
+    if (response.status === 200) {
+      const data = await response.json();
+      const products = data.products.slice(0, 5);
+      let productList = "";
+      products.forEach((product) => {
+        const newProduct = `
+        <div class="card" style="width: 12rem">
+          <img
+            src="${product.thumbnail}"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title text-truncate">
+             ${product.title}
+            </h5>
+            <p class="card-text text-truncate">
+                   ${product.description}
+            </p>
+            <div class="card-text">
+              <span>৳${product.price}</span>
+              <span style="font-size: 10px; text-align: end">-         ${product.discountPercentage}%</span>
+            </div>
+            <a href="#" class="btn btn-primary w-100">Buy</a>
+          </div>
+        </div>`;
+        productList += newProduct;
+      });
+
+      document.querySelector("#products .content").innerHTML = productList;
+    } else {
+      throw new Error("Internal server error");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});

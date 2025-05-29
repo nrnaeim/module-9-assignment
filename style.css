@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   margin: 10px 0;
   background-color: rgb(234, 234, 234);
@@ -51,7 +57,7 @@ body {
   left: 0;
   height: 2.5px;
   width: 0;
-  background-color: #ffc900;
+  background-color: rgb(255 192 0);
   transition: ease-in;
   transition-duration: 300ms;
 }
@@ -62,4 +68,24 @@ body {
 
 .menu li a.activeMenu::before {
   width: 100%;
+}
+#products,
+.users,
+.posts {
+  width: 100%;
+  border: 1px solid rgb(162, 162, 162);
+  border-radius: 5px;
+}
+.heading {
+  height: 40px;
+  padding: 2px;
+  border-bottom: 1px solid rgb(162, 162, 162);
+  a,
+  h4 {
+    text-decoration: none;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
 }

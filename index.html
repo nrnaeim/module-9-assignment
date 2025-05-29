@@ -27,7 +27,7 @@
   </head>
   <body>
     <nav
-      class="myNavbar container d-flex flex-sm-column flex-lg-row justify-content-lg-between"
+      class="myNavbar container mb-4 d-flex flex-sm-column flex-lg-row justify-content-lg-between"
     >
       <div class="menuHeader d-flex justify-content-between align-items-center">
         <div class="logo">
@@ -55,18 +55,31 @@
             <a class="activeMenu" href="#">Home</a>
           </li>
           <li>
-            <a href="#">Fetch All Product</a>
+            <a href="#">Products</a>
           </li>
           <li>
-            <a href="#">Fetch All Product</a>
+            <a href="#">Users</a>
           </li>
           <li>
-            <a href="#">Fetch All Product</a>
+            <a href="#">Posts</a>
           </li>
         </ul>
       </div>
     </nav>
 
+    <div id="products" class="container d-flex flex-column gap-2">
+      <div class="heading d-flex justify-content-between align-content-center">
+        <h4 class="m-0">Products</h4>
+        <a href="">See All</a>
+      </div>
+      <div class="content py-4 d-flex flex-wrap gap-5 justify-content-center">
+        <!-- Product will dynamically added here -->
+      </div>
+    </div>
+    <!-- 
+    <div class="container" id="users">Hello</div>
+
+    <div class="container" id="posts">Hello</div> -->
     <script src="index.js"></script>
   </body>
 </html>
