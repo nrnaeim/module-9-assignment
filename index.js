@@ -33,9 +33,18 @@ menu.forEach((btn) => {
 
 //product fetching handler
 window.addEventListener("load", async () => {
+  document.querySelector(
+    "#products .content"
+  ).innerHTML = `<div class="d-flex justify-content-center">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>`;
+
   const fetecUrl = "https://dummyjson.com/products";
   try {
     const response = await fetch(fetecUrl);
+
     if (response.status === 200) {
       const data = await response.json();
       const products = data.products.slice(0, 5);
