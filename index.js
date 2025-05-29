@@ -31,8 +31,8 @@ menu.forEach((btn) => {
   });
 });
 
-//product fetching handler
-window.addEventListener("load", async () => {
+//fetch allData
+async function fetcProduct() {
   document.querySelector(
     "#products .content"
   ).innerHTML = `<div class="d-flex justify-content-center">
@@ -47,10 +47,20 @@ window.addEventListener("load", async () => {
 
     if (response.status === 200) {
       const data = await response.json();
-      const products = data.products.slice(0, 5);
-      let productList = "";
-      products.forEach((product) => {
-        const newProduct = `
+      return (products = await data.products);
+    } else {
+      throw new Error("Internal server error");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+//product inseting
+function insertProduct(products) {
+  let productList = "";
+  products.forEach((product) => {
+    const newProduct = `
         <div class="card" style="width: 12rem">
           <img
             src="${product.thumbnail}"
@@ -71,14 +81,22 @@ window.addEventListener("load", async () => {
             <a href="#" class="btn btn-primary w-100">Buy</a>
           </div>
         </div>`;
-        productList += newProduct;
-      });
+    productList += newProduct;
+  });
 
-      document.querySelector("#products .content").innerHTML = productList;
-    } else {
-      throw new Error("Internal server error");
-    }
-  } catch (error) {
-    console.log(error);
-  }
+  document.querySelector("#products .content").innerHTML = productList;
+}
+
+//product fetching handler
+window.addEventListener("load", async () => {
+  const product = await fetcProduct();
+  const slicePart = product.slice(0, 5);
+  insertProduct(slicePart);
 });
+
+//see all product and Product handler
+async function seeAllProduct(event) {
+  event.preventDefault();
+  const productList = await fetcProduct();
+  insertProduct(productList);
+}
