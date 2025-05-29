@@ -44,54 +44,61 @@ async function fetcProduct() {
   const fetecUrl = "https://dummyjson.com/products";
   try {
     const response = await fetch(fetecUrl);
-
     if (response.status === 200) {
       const data = await response.json();
       return (products = await data.products);
     } else {
-      throw new Error("Internal server error");
+      throw new Error("Server error");
     }
   } catch (error) {
-    console.log(error);
+    return error;
   }
 }
 
 //product inseting
-function insertProduct(products) {
-  let productList = "";
-  products.forEach((product) => {
-    const newProduct = `
-        <div class="card" style="width: 12rem">
-          <img
-            src="${product.thumbnail}"
-            class="card-img-top"
-            alt="..."
-          />
-          <div class="card-body">
-            <h5 class="card-title text-truncate">
-             ${product.title}
-            </h5>
-            <p class="card-text text-truncate">
-                   ${product.description}
-            </p>
-            <div class="card-text">
-              <span>৳${product.price.toLocaleString()}</span>
-              <span style="font-size: 10px; text-align: end">-         ${product.discountPercentage.toLocaleString()}%</span>
-            </div> 
-            <a href="#" class="btn btn-primary w-100">Buy</a>
-          </div>
-        </div>`;
-    productList += newProduct;
-  });
+function insertProduct(responseData) {
+  if (responseData?.message) {
+    errorhandler();
+  } else {
+    let productList = "";
+    responseData.forEach((product) => {
+      const newProduct = `
+          <div class="card" style="width: 12rem">
+            <img
+              src="${product.thumbnail}"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title text-truncate">
+               ${product.title}
+              </h5>
+              <p class="card-text text-truncate">
+                     ${product.description}
+              </p>
+              <div class="card-text">
+                <span>৳${product.price.toLocaleString()}</span>
+                <span style="font-size: 10px; text-align: end">-         ${product.discountPercentage.toLocaleString()}%</span>
+              </div> 
+              <a href="#" class="btn btn-primary w-100">Buy</a>
+            </div>
+          </div>`;
+      productList += newProduct;
+    });
 
-  document.querySelector("#products .content").innerHTML = productList;
+    document.querySelector("#products .content").innerHTML = productList;
+  }
 }
 
 //product fetching handler
 window.addEventListener("load", async () => {
-  const product = await fetcProduct();
-  const slicePart = product.slice(0, 5);
-  insertProduct(slicePart);
+  const responseData = await fetcProduct();
+  if (responseData?.message) {
+    errorhandler();
+  } else {
+    const slicePart = responseData.slice(0, 5);
+    insertProduct(slicePart);
+  }
 });
 
 //see all product and Product handler
@@ -99,4 +106,11 @@ async function seeAllProduct(event) {
   event.preventDefault();
   const productList = await fetcProduct();
   insertProduct(productList);
+}
+
+//error handler
+function errorhandler() {
+  document.querySelector("#products .content").innerHTML = `
+   <p>Opps! 01 Server error</p>
+  `;
 }
