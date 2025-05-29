@@ -59,8 +59,8 @@ window.addEventListener("load", async () => {
                    ${product.description}
             </p>
             <div class="card-text">
-              <span>৳${product.price}</span>
-              <span style="font-size: 10px; text-align: end">-         ${product.discountPercentage}%</span>
+              <span>৳${product.price.toLocaleString()}</span>
+              <span style="font-size: 10px; text-align: end">-         ${product.discountPercentage.toLocaleString()}%</span>
             </div>
             <a href="#" class="btn btn-primary w-100">Buy</a>
           </div>
