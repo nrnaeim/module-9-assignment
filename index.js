@@ -63,7 +63,8 @@ function insertProduct(responseData) {
     let productList = "";
     responseData.forEach((product) => {
       const newProduct = `
-          <div class="card myProductCard" style="width: 12rem">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"> 
+          <div class="card myProductCard p-0">
             <img
               src="${product.thumbnail}"
               class="card-img-top"
@@ -82,6 +83,7 @@ function insertProduct(responseData) {
               </div> 
               <a href="#" class="btn btn-primary w-100">Buy</a>
             </div>
+          </div>
           </div>`;
       productList += newProduct;
     });
@@ -96,7 +98,7 @@ window.addEventListener("load", async () => {
   if (responseData?.message) {
     errorhandler();
   } else {
-    const slicePart = responseData.slice(0, 5);
+    const slicePart = responseData.slice(0, 6);
     insertProduct(slicePart);
   }
 });
