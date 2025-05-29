@@ -14,12 +14,9 @@ menuOpenCloseBtns.forEach((item) => {
       : menu.classList.add("smallDeviceMenu");
 
     menuOpenCloseBtns.forEach((btn) => {
-      if (btn.classList.contains("d-none")) {
-        btn.classList.remove("d-none ");
-      } else {
-        btn.classList.add("d-none");
-      }
+      btn.classList.remove("d-none");
     });
+    event.target.classList.add("d-none");
   });
 });
 
@@ -61,7 +58,7 @@ window.addEventListener("load", async () => {
             <div class="card-text">
               <span>৳${product.price.toLocaleString()}</span>
               <span style="font-size: 10px; text-align: end">-         ${product.discountPercentage.toLocaleString()}%</span>
-            </div>
+            </div> 
             <a href="#" class="btn btn-primary w-100">Buy</a>
           </div>
         </div>`;
