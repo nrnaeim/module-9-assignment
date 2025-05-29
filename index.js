@@ -63,7 +63,7 @@ function insertProduct(responseData) {
     let productList = "";
     responseData.forEach((product) => {
       const newProduct = `
-          <div class="card" style="width: 12rem">
+          <div class="card myProductCard" style="width: 12rem">
             <img
               src="${product.thumbnail}"
               class="card-img-top"

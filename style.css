@@ -89,3 +89,8 @@ body {
     display: flex;
   }
 }
+.myProductCard:hover {
+  transform: translateY(-5px);
+  transition: ease-in 300ms;
+  box-shadow: 1px 1px 10px;
+}
