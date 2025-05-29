@@ -41,7 +41,7 @@ async function fetcProduct() {
   </div>
 </div>`;
 
-  const fetecUrl = "https://dummyjson.co/products";
+  const fetecUrl = "https://dummyjson.com/products";
   try {
     const response = await fetch(fetecUrl);
     if (response.status === 200) {
